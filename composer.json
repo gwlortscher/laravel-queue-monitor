@@ -1,19 +1,24 @@
 {
-    "name": "tremby/laravel-queue-monitor",
+    "name": "jkatzen/laravel-queue-monitor",
     "description": "Laravel queue monitoring tools",
     "require": {
-        "laravel/framework": "~5.0"
+        "laravel/framework": "~5.0",
+        "predis/predis": "^1.1"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Bart Nagel",
             "email": "bart@tremby.net"
+        },
+        {
+            "name": "Jacob Katzen",
+            "email": "jacob@curology.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Tremby\\QueueMonitor\\": "src/"
+            "JKatzen\\QueueMonitor\\": "src/"
         }
     }
 }

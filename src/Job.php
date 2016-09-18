@@ -1,5 +1,5 @@
 <?php
-namespace Tremby\QueueMonitor;
+namespace JKatzen\QueueMonitor;
 
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;

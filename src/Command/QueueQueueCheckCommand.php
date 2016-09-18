@@ -1,10 +1,10 @@
 <?php
-namespace Tremby\QueueMonitor\Command;
+namespace JKatzen\QueueMonitor\Command;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Tremby\QueueMonitor\QueueMonitor;
+use JKatzen\QueueMonitor\QueueMonitor;
 
 class QueueQueueCheckCommand extends Command
 {

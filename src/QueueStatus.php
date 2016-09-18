@@ -1,5 +1,5 @@
 <?php
-namespace Tremby\QueueMonitor;
+namespace JKatzen\QueueMonitor;
 
 use Cache;
 use Carbon\Carbon;

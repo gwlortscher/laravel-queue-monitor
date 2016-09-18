@@ -1,5 +1,5 @@
 <?php
-namespace Tremby\QueueMonitor;
+namespace JKatzen\QueueMonitor;
 
 use Illuminate\Contracts\Cache\Repository as CacheRepository;
 use Illuminate\Contracts\View\Factory as ViewFactory;
