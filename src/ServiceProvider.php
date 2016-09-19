@@ -35,16 +35,13 @@ class ServiceProvider extends BaseServiceProvider
                     $status = new QueueStatus($queueName, QueueStatus::ERROR, false);
                     $status->setMessage("Status not found in cache; is a cron job set up and running?");
                 }
-                $queues[$queueName] = $status;
+                $queues[$queueName] = ['status' => $status];
                 if (config('queue.default') == 'redis') {
                     $redisQueue = new QueueRedisStatus($queueName);
-                    $queueLengths[$queueName] = $redisQueue->getMessageCount();
+                    $queue[$queueName]['redis'] = $redisQueue->getMessageCount();
                 }
             }
             $view->with('queues', $queues);
-            if (config('queue.default') == 'redis') {
-                $view->with('queueLengths', $queueLengths);
-            }
         };
         $viewFactory->composer('queue-monitor::status', $composer);
         $viewFactory->composer('queue-monitor::status-json', $composer);

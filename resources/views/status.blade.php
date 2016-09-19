@@ -4,6 +4,9 @@
             Queue name
         </th>
         <th>
+            Num Messages
+        </th>
+        <th>
             Status
         </th>
         <th>
@@ -17,33 +20,36 @@
         </th>
     </thead>
     <tbody>
-        @foreach ($queues as $queueStatus)
+        @foreach ($queues as $queue)
             <tr class="
-                @if ($queueStatus->isError())
+                @if ($queue->status->isError())
                     danger
-                @elseif ($queueStatus->isOk())
+                @elseif ($queue->status->isOk())
                     success
-                @elseif ($queueStatus->isPending())
+                @elseif ($queue->status->isPending())
                     warning
                 @endif
             ">
                 <td>
                     <code>
-                        {{ $queueStatus->getQueueName() }}
+                        {{ $queue->status->getQueueName() }}
                     </code>
                 </td>
                 <td>
-                    {{ $queueStatus->getStatus() }}
+                    {{ $queue->redis->getMessageCount() or 'N/A' }}
                 </td>
                 <td>
-                    {{ $queueStatus->getMessage() }}
+                    {{ $queue->status->getStatus() }}
                 </td>
                 <td>
-                    @include('queue-monitor::date', ['date' => $queueStatus->getStartTime()])
+                    {{ $queue->status->getMessage() }}
                 </td>
                 <td>
-                    @include('queue-monitor::date', ['date' => $queueStatus->getEndTime()])
-                    @if (($start = $queueStatus->getStartTime()) && ($end = $queueStatus->getEndTime()))
+                    @include('queue-monitor::date', ['date' => $queue->status->getStartTime()])
+                </td>
+                <td>
+                    @include('queue-monitor::date', ['date' => $queue->status->getEndTime()])
+                    @if (($start = $queue->status->getStartTime()) && ($end = $queue->status->getEndTime()))
                         <span class="text-muted">
                             ({{ $end->diffForHumans($start) }})
                         </span>
