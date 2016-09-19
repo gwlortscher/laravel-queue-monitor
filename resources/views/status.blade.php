@@ -22,34 +22,34 @@
     <tbody>
         @foreach ($queues as $queue)
             <tr class="
-                @if ($queue->status->isError())
+                @if ($queue['status']->isError())
                     danger
-                @elseif ($queue->status->isOk())
+                @elseif ($queue['status']->isOk())
                     success
-                @elseif ($queue->status->isPending())
+                @elseif ($queue['status']->isPending())
                     warning
                 @endif
             ">
                 <td>
                     <code>
-                        {{ $queue->status->getQueueName() }}
+                        {{ $queue['status']->getQueueName() }}
                     </code>
                 </td>
                 <td>
-                    {{ isset($queue->redis) ? $queue->redis->getMessageCount() : 'N/A' }}
+                    {{ isset($queue['redis']) ? $queue['redis']->getMessageCount() : 'N/A' }}
                 </td>
                 <td>
-                    {{ $queue->status->getStatus() }}
+                    {{ $queue['status']->getStatus() }}
                 </td>
                 <td>
-                    {{ $queue->status->getMessage() }}
+                    {{ $queue['status']->getMessage() }}
                 </td>
                 <td>
                     @include('queue-monitor::date', ['date' => $queue->status->getStartTime()])
                 </td>
                 <td>
-                    @include('queue-monitor::date', ['date' => $queue->status->getEndTime()])
-                    @if (($start = $queue->status->getStartTime()) && ($end = $queue->status->getEndTime()))
+                    @include('queue-monitor::date', ['date' => $queue['status']->getEndTime()])
+                    @if (($start = $queue['status']->getStartTime()) && ($end = $queue['status']->getEndTime()))
                         <span class="text-muted">
                             ({{ $end->diffForHumans($start) }})
                         </span>

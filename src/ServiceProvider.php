@@ -37,7 +37,7 @@ class ServiceProvider extends BaseServiceProvider
                 }
                 $queues[$queueName] = ['status' => $status];
                 if (config('queue.default') == 'redis') {
-                    $queue[$queueName]['redis'] = new QueueRedisStatus($queueName);;
+                    $queues[$queueName]['redis'] = new QueueRedisStatus($queueName);;
                 }
             }
             $view->with('queues', $queues);
