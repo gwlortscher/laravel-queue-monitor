@@ -36,7 +36,7 @@
                     </code>
                 </td>
                 <td>
-                    {{ $queue->redis->getMessageCount() or 'N/A' }}
+                    {{ isset($queue->redis) ? $queue->redis->getMessageCount() : 'N/A' }}
                 </td>
                 <td>
                     {{ $queue->status->getStatus() }}
