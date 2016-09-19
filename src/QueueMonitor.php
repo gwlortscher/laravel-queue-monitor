@@ -1,5 +1,5 @@
 <?php
-namespace Katzen\QueueMonitor;
+namespace JKatzen\QueueMonitor;
 
 use Cache;
 use Carbon\Carbon;
