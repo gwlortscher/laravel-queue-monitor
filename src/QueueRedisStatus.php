@@ -1,5 +1,5 @@
 <?php
-namespace JKatzen\QueueRedisStatus;
+namespace JKatzen\QueueMonitor;
 
 use Predis;
 
