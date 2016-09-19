@@ -26,11 +26,11 @@ class QueueRedisStatus
 
     public function getMessageCount()
     {
-        $this->client->llen('queues:'.$this->queueName);
+        return $this->client->llen('queues:'.$this->queueName);
     }
 
     public function resetMessageQueue()
     {
-        $this->client->del('queues'.$this->queueName);
+        return $this->client->del('queues'.$this->queueName);
     }
 }

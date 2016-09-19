@@ -45,7 +45,7 @@
                     {{ $queue['status']->getMessage() }}
                 </td>
                 <td>
-                    @include('queue-monitor::date', ['date' => $queue->status->getStartTime()])
+                    @include('queue-monitor::date', ['date' => $queue['status']->getStartTime()])
                 </td>
                 <td>
                     @include('queue-monitor::date', ['date' => $queue['status']->getEndTime()])
