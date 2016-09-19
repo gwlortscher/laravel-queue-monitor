@@ -28,6 +28,7 @@ class ServiceProvider extends BaseServiceProvider
         // Composer for the status views
         $composer = function ($view) use ($cache) {
             $queues = [];
+            $queueLengths = [];
             foreach ($cache->get(QueueMonitor::QUEUES_CACHE_KEY, []) as $queueName) {
                 $status = QueueStatus::get($queueName);
                 if (!$status) {
@@ -35,8 +36,15 @@ class ServiceProvider extends BaseServiceProvider
                     $status->setMessage("Status not found in cache; is a cron job set up and running?");
                 }
                 $queues[$queueName] = $status;
+                if (config('queue.default') == 'redis') {
+                    $redisQueue = new QueueRedisStatus($queueName);
+                    $queueLengths[$queueName] = $redisQueue->getMessageCount();
+                }
             }
             $view->with('queues', $queues);
+            if (config('queue.default') == 'redis') {
+                $view->with('queueLengths', $queueLengths);
+            }
         };
         $viewFactory->composer('queue-monitor::status', $composer);
         $viewFactory->composer('queue-monitor::status-json', $composer);
