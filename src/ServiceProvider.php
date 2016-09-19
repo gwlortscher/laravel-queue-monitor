@@ -36,7 +36,7 @@ class ServiceProvider extends BaseServiceProvider
                 }
                 $queues[$queueName] = $status;
             }
-            $view->withQueues($queues);
+            $view->with('queues', $queues);
         };
         $viewFactory->composer('queue-monitor::status', $composer);
         $viewFactory->composer('queue-monitor::status-json', $composer);
