@@ -31,6 +31,6 @@ class QueueRedisStatus
 
     public function resetMessageQueue()
     {
-        return $this->client->del('queues'.$this->queueName);
+        return $this->client->del('queues:'.$this->queueName);
     }
 }
