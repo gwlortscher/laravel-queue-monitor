@@ -37,7 +37,7 @@ class QueueQueueCheckCommand extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         QueueMonitor::queueQueueCheck($this->argument('queue'));
     }
